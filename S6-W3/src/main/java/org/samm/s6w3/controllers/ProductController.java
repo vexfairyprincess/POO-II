@@ -22,6 +22,24 @@ public class ProductController {
         return productRepository.findAll();
     }
 
+    // GET IVA for a product
+    @GetMapping("/{id}/iva")
+    public double getProductIva(@PathVariable Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found with id " + id));
+        double ivaRate = 0.15;
+        return product.getPrice() * ivaRate;
+    }
+
+    // GET Total (price + IVA) for a product
+    @GetMapping("/{id}/total")
+    public double getProductTotal(@PathVariable Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found with id " + id));
+        double ivaRate = 0.15;
+        return product.getPrice() * (1 + ivaRate);
+    }
+
     // POST new product
     @PostMapping
     public Product createProduct(@RequestBody Product product) {

@@ -1,71 +1,55 @@
 package org.samm.s6w3.controllers;
 
+
+import jakarta.validation.Valid;
 import org.samm.s6w3.models.Product;
-import org.samm.s6w3.repositories.ProductRepository;
+import org.samm.s6w3.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     // GET all products
     @GetMapping
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return productService.getAll();
     }
 
-    // GET IVA for a product
-    @GetMapping("/{id}/iva")
-    public double getProductIva(@PathVariable Long id) {
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with id " + id));
-        double ivaRate = 0.15;
-        return product.getPrice() * ivaRate;
-    }
-
-    // GET Total (price + IVA) for a product
-    @GetMapping("/{id}/total")
-    public double getProductTotal(@PathVariable Long id) {
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with id " + id));
-        double ivaRate = 0.15;
-        return product.getPrice() * (1 + ivaRate);
-    }
-
-    // POST new product
+    //POST a prodcut
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
-        return productRepository.save(product);
+    public Product createProduct(@Valid @RequestBody Product product) {
+        return productService.save(product);
     }
 
-    // PUT update existing product
+    // GET product by ID
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
-        return productRepository.findById(id)
-                .map(product -> {
-                    product.setName(updatedProduct.getName());
-                    product.setPrice(updatedProduct.getPrice());
-                    return productRepository.save(product);
-                })
-                .orElseThrow(() -> new RuntimeException("Product not found with id " + id));
+    public Product updateProduct(@PathVariable Long id, @Valid @RequestBody Product product) {
+        return productService.update(id, product);
     }
 
     // DELETE product by ID
     @DeleteMapping("/{id}")
     public String deleteProduct(@PathVariable Long id) {
-        if (productRepository.existsById(id)) {
-            productRepository.deleteById(id);
-            return "Product with id " + id + " deleted successfully.";
-        } else {
-            return "Product not found.";
-        }
+        boolean deleted = productService.delete(id);
+        return deleted ? "Product deleted successfully." : "Product not found.";
+    }
+
+    // GET IVA for a product
+    @GetMapping("/{id}/iva")
+    public double getProductIva(@PathVariable Long id) {
+        return productService.getIva(id);
+    }
+
+    // GET total price with IVA
+    @GetMapping("/{id}/total")
+    public double getProductTotal(@PathVariable Long id) {
+        return productService.getTotal(id);
     }
 }

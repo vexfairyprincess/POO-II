@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+        <!-- Capital Contable -->
+        <EditText
+                android:id="@+id/activosInput"
+                android:hint="Activos"
+                android:inputType="numberDecimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <EditText
+                android:id="@+id/pasivosInput"
+                android:hint="Pasivos"
+                android:inputType="numberDecimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <Button
+                android:id="@+id/btnCapital"
+                android:text="Calcular Capital Contable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <TextView
+                android:id="@+id/resultCapital"
+                android:text="Resultado: "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <!-- Nota Final -->
+        <EditText
+                android:id="@+id/corte1Input"
+                android:hint="Nota Corte 1"
+                android:inputType="numberDecimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <EditText
+                android:id="@+id/corte2Input"
+                android:hint="Nota Corte 2"
+                android:inputType="numberDecimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <EditText
+                android:id="@+id/corte3Input"
+                android:hint="Nota Corte 3"
+                android:inputType="numberDecimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <Button
+                android:id="@+id/btnNotaFinal"
+                android:text="Calcular Nota Final"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <TextView
+                android:id="@+id/resultNotaFinal"
+                android:text="Resultado: "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <!-- IVA -->
+        <EditText
+                android:id="@+id/precioInput"
+                android:hint="Precio"
+                android:inputType="numberDecimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <Button
+                android:id="@+id/btnIVA"
+                android:text="Calcular IVA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <TextView
+                android:id="@+id/resultIVA"
+                android:text="Resultado: "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <!-- INSS -->
+        <EditText
+                android:id="@+id/salarioInput"
+                android:hint="Salario"
+                android:inputType="numberDecimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <Button
+                android:id="@+id/btnINSS"
+                android:text="Calcular INSS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <TextView
+                android:id="@+id/resultINSS"
+                android:text="Resultado: "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <!-- Cantidad de Letras -->
+        <EditText
+                android:id="@+id/fraseInput"
+                android:hint="Escriba una frase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <Button
+                android:id="@+id/btnLetras"
+                android:text="Contar Letras"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <TextView
+                android:id="@+id/resultLetras"
+                android:text="Resultado: "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>
